@@ -57,16 +57,18 @@ namespace MessageFilter
 
         private void BTN_Submit_Message_Click(object sender, RoutedEventArgs e)
         {
-            if (Regex.IsMatch(TB_MessageHeader.Text, @"^[S][0-9]{9}$", RegexOptions.IgnoreCase))
+            string messageHeader = TB_MessageHeader.Text;
+            string messageBody = TB_MessageBody.Text;
+            if (Regex.IsMatch(messageHeader, @"^[S][0-9]{9}$", RegexOptions.IgnoreCase))
             {
 
-                SMS temp = new SMS(TB_MessageHeader.Text, TB_MessageBody.Text);
+                SMS temp = new SMS(messageHeader, messageBody);
                 temp.Process(TextWordsDictionary);
                 temp.printSMS();
             }
-            else if (Regex.IsMatch(TB_MessageHeader.Text, @"^E[0-9]{9}$", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(messageHeader, @"^E[0-9]{9}$", RegexOptions.IgnoreCase))
             {
-                Email temp = new Email(TB_MessageHeader.Text, TB_MessageBody.Text);
+                Email temp = new Email(messageHeader, messageBody);
                 
                 //Seperate message Text frombody, means getting email from start first
                 if(temp.SIRcheck()==true)//If Subject is SIR Code then make SIR
@@ -80,10 +82,10 @@ namespace MessageFilter
                     Email.EmailsReceivedList.Add(temp);
                 }
             }
-            else if (Regex.IsMatch(TB_MessageHeader.Text, @"^T[0-9]{9}$", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(messageHeader, @"^T[0-9]{9}$", RegexOptions.IgnoreCase))
             {
                 Tweet temp = new Tweet();
-                temp.Process();
+                temp.ProcessTweet();
                 
             }
             else

@@ -4,14 +4,14 @@
         Title="MainWindow" Height="350" Width="300">
     <Grid>
         <Button x:Name="TestButton" Content="TestButton" HorizontalAlignment="Left" Margin="203,26,0,0" VerticalAlignment="Top" Width="75" Click="TestButton_Click"/>
-        <TextBox x:Name="TB_PathToTextWords" HorizontalAlignment="Left" Height="56" Margin="6,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Text="C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\MessageFilter\FilterWords\textwords.csv"/>
+        <TextBox x:Name="TB_PathToTextWords" HorizontalAlignment="Left" Height="56" Margin="6,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Text="F:\SE cw\textwords.csv"/>
         <Button x:Name="BTN_SetPath" Content="SetPath" HorizontalAlignment="Left" Margin="211,216,0,0" VerticalAlignment="Top" Width="75" Click="BTN_SetPath_Click" Height="42"/>
         <Label Content="Please enter the path to the &#xD;&#xA;textwords.csv file in the textbox below&#xD;&#xA; then click SetPath" HorizontalAlignment="Left" Margin="0,203,0,0" VerticalAlignment="Top" Height="60" Width="216"/>
         <Separator HorizontalAlignment="Left" Height="100" Margin="6,149,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="TB_MessageHeader" HorizontalAlignment="Left" Height="23" Margin="87,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" ToolTip="Message Header"/>
         <Label Content="Message ID :" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
         <Label Content="Message Body :" HorizontalAlignment="Left" Margin="6,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.935,0.462"/>
-        <TextBox x:Name="TB_MessageBody" HorizontalAlignment="Left" Height="96" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" ToolTip="Message Body"/>
+        <TextBox x:Name="TB_MessageBody" HorizontalAlignment="Left" Height="96" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" ToolTip="Message Body" AcceptsReturn="True"/>
         <Button x:Name="BTN_Submit_Message" Content="Submit" HorizontalAlignment="Left" Margin="203,173,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Message_Click"/>
 
     </Grid>

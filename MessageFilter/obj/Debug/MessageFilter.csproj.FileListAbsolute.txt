@@ -1,1 +1,13 @@
 F:\SE cw\SE-CW\MessageFilter\bin\Debug\MessageFilter.exe.config
+F:\SE cw\SE-CW\MessageFilter\bin\Debug\MessageFilter.exe
+F:\SE cw\SE-CW\MessageFilter\bin\Debug\MessageFilter.pdb
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.csprojResolveAssemblyReference.cache
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MainWindow.baml
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MainWindow.g.cs
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\App.g.cs
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter_MarkupCompile.cache
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.g.resources
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.Properties.Resources.resources
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.csproj.GenerateResource.Cache
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.exe
+F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.pdb

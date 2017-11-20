@@ -18,8 +18,7 @@ namespace MessageFilter
             protected string MessageHeader {get; set;}
             protected string MessageBody { get; set; } //message body is raw input before processing
 
-            
-        
+            protected static Regex URLregex = new Regex(@"(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?", RegexOptions.IgnoreCase);//https://msdn.microsoft.com/en-us/library/ff650303.aspx?f=255&MSPPError=-2147217396#paght000001_commonregularexpressions
 
             public Message(){}
             public Message(string messageHeader, string messageBody)
@@ -75,9 +74,9 @@ namespace MessageFilter
 
        public class Email: Message
        {
-           public static List<Email> EmailsReceivedList;
-           public static List<string> URLsQuarantined;
-           public static List<Tuple<string, string>> SIRsReceivedList;
+           public static List<Email> EmailsReceivedList= new List<Email>();
+           public static List<string> URLsQuarantined = new List<String>();
+           public static List<Tuple<string, string>> SIRsReceivedList = new List<Tuple<string, string>>();
 
            private string Sender { get; set; }
            private string Subject { get; set; }
@@ -87,9 +86,9 @@ namespace MessageFilter
            
            //public static Regex EmailProcess = new Regex(@"^(("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+\/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))((\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))", RegexOptions.IgnoreCase);
            private static Regex EmailProcess = new Regex(@"^(("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+\/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))((\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6})) (.{20}) (.{1,1028})");
-           private static Regex ContainsSIR = new Regex(@"\bSIR [0-9]{2}\/[0-9]{2}\/[0-9]{4}\b");
-           private static Regex SIRProcess = new Regex(@"^(("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+\/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))((\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))( SIR [0-9]{2}\/[0-9]{2}\/[0-9]{4})\n(\d{2}\-\d{3}\-\d{2})\n(.*)\n(.{1,1028})");
-           private static Regex URLregex = new Regex(@"(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?", RegexOptions.IgnoreCase);//https://msdn.microsoft.com/en-us/library/ff650303.aspx?f=255&MSPPError=-2147217396#paght000001_commonregularexpressions
+           private static Regex ContainsSIR = new Regex(@"\bSIR [0-9]{2}\/[0-9]{2}\/[0-9]{4}?\r\n");
+           private static Regex SIRProcess = new Regex(@"^(("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+\/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))((\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))( SIR [0-9]{2}\/[0-9]{2}\/[0-9]{4})?\r\n(\d{2}\-\d{3}\-\d{2})?\r\n(.*)?\r\n(.{1,1028})");
+           
            
            //SIR REGEX for subject incedient report and body(\d{2}\-\d{3}\-\d{2})\n(.*)\n(.{1,1028})
            public bool SIRcheck()
@@ -115,7 +114,6 @@ namespace MessageFilter
                    URLsQuarantined.Add(tempUrl);
                }
                URLregex.Replace(this.MessageText, "<URL QUARINTINED> ");
-
            }
 
            public void ProcessEmail()
@@ -155,30 +153,41 @@ namespace MessageFilter
 
       public class Tweet: Message
        {
-          public static List<Tweet> TweetsRecievedList;
-          public List<string> getHashTags()
+          private string Sender;
+
+          public static List<Tweet> TweetsRecievedList = new List<Tweet>();
+          public static List<string> MentionsList = new List<string>();
+          public static List<string> HashtagsList = new List<string>();
+         
+
+          private static Regex Handles = new Regex(@"(\@[0-9a-zA-Z]{1,20})(\s|\n|$)",RegexOptions.IgnoreCase);
+          private static Regex Hashtags = new Regex(@"(\#[0-9a-zA-Z]{1,20})(\s|\n|$)", RegexOptions.IgnoreCase);
+          private static Regex TweetProcess = new Regex(@"(^\@[0-9a-zA-Z]{1,15})(\s|\n| )(.{1,140})",RegexOptions.IgnoreCase);
+           
+          private void getHashTags()
           {
-              List<string> Hashtags = new List<string>();
-              foreach (Match match in Regex.Matches(this.MessageBody, @"(?<!\w)#\w+"))
+              foreach (Match match in Tweet.Hashtags.Matches(this.MessageText))
               {
-                  Hashtags.Add(match.ToString());
+                  HashtagsList.Add(match.ToString());
               }
-              return Hashtags;
           }
 
-          public List<string> getMentions()
+          private void getMentions()
           {
-              List<string> Mentions = new List<string>();
-              foreach (Match match in Regex.Matches(this.MessageBody, @"(?<!\w)@\w+"))
+              foreach (Match match in Tweet.Handles.Matches(this.MessageText))
               {
-                  Mentions.Add(match.ToString());
+                  MentionsList.Add(match.ToString());
               }
-              return Mentions;
           }
 
-          public void Process()
+          public void ProcessTweet()
            {
-               
+               Match tempTweet = Tweet.TweetProcess.Match(this.MessageBody);
+               this.Sender = tempTweet.Groups[1].Value;
+               this.MessageText = tempTweet.Groups[3].Value;
+               this.getHashTags();//gets hashtags and adds them to static list
+               this.getMentions();
+               Tweet.TweetsRecievedList.Add(this);
            }
       }
 }
