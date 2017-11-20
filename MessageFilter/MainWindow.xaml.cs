@@ -59,25 +59,26 @@ namespace MessageFilter
         {
            // Message temp = new Message();
             string HeaderInput = TB_MessageHeader.Text;
-            string MessageBody = TB_MessageBody.Text;
+            string BodyInput = TB_MessageBody.Text;
             if (Regex.IsMatch(HeaderInput, @"^[S][0-9]{9}$", RegexOptions.IgnoreCase))
             {
 
-                SMS temp = new SMS(HeaderInput, MessageBody);
+                SMS temp = new SMS(TB_MessageHeader.Text, TB_MessageBody.Text);
                 temp.Process(TextWordsDictionary);
                 temp.printSMS();
             }
             else if (Regex.IsMatch(HeaderInput, @"^E[0-9]{9}$", RegexOptions.IgnoreCase))
             {
-                Email temp = new Email();
+                Email temp = new Email(TB_MessageHeader.Text, TB_MessageBody.Text);
+                temp.ProcessEmail();
                 //Seperate message Text frombody, means getting email from start first
-                if()//If Subject is SIR Code then make SIR
+                if(temp.SIRcheck()==true)//If Subject is SIR Code then make SIR
                 {
-                    temp.SIR = true;
+                    temp.printEmail();
                 }
                 else//Normal email message
                 {
-                    temp.SIR = false;
+                    temp.printEmail();
                 }
             }
             else if (Regex.IsMatch(HeaderInput, @"^T[0-9]{9}$", RegexOptions.IgnoreCase))
