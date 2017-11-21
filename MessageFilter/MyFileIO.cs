@@ -15,6 +15,5 @@ namespace MessageFilter
 
             return FilterWordsDictionary;
         }
-
     }
 }

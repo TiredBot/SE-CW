@@ -11,3 +11,16 @@ F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.Properties.Resources.resour
 F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.csproj.GenerateResource.Cache
 F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.exe
 F:\SE cw\SE-CW\MessageFilter\obj\Debug\MessageFilter.pdb
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\MessageFilter.exe.config
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.exe
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.pdb
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.csprojResolveAssemblyReference.cache
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MainWindow.baml
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MainWindow.g.cs
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\App.g.cs
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter_MarkupCompile.cache
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.g.resources
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.Properties.Resources.resources
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.csproj.GenerateResource.Cache
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\MessageFilter.exe
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\MessageFilter.pdb

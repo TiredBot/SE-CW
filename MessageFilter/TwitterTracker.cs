@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace MessageFilter
 {
-    class TwitterTracker
+    static class TwitterTracker
     {
+        public static Dictionary<string, int> TrendingList = new Dictionary<string, int>();
+        public static List<string> MentionsList = new List<string>();
+
+        public static void CreateTrending()
+        {
+            foreach (string s in Tweet.HashtagsList)
+            {
+                if (TrendingList.ContainsKey(s))
+                {
+                    TrendingList[s] = TrendingList[s] + 1;
+                }
+                else
+                {
+                    TrendingList.Add(s, 1);
+                }
+            }
+        }
     }
 }

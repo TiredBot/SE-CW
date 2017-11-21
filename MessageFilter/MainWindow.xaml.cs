@@ -33,10 +33,13 @@ namespace MessageFilter
             InitializeComponent();
         }
         
-        private void TestButton_Click(object sender, RoutedEventArgs e)
+        private void TestButton_Click(object sender, RoutedEventArgs e)//Button for updating twitter and SIR ListBoxes
         {
-
-
+            //if()
+            TwitterTracker.CreateTrending();
+            LB_Mentions.ItemsSource = TwitterTracker.MentionsList;
+            LB_Trending.ItemsSource = Tweet.TrendingListDisplay();
+            LB_SIR.ItemsSource = Email.SIRListDisplay();
         }
 
         private void BTN_SetPath_Click(object sender, RoutedEventArgs e)
@@ -51,8 +54,6 @@ namespace MessageFilter
             {
                 MessageBox.Show("Invalid Path.");
             }
-            //foreach (KeyValuePair<string, string> kv in FilterWordsDictionary)
-             //  Console.WriteLine("{0}, {1}", kv.Key.ToString(), kv.Value.ToString());
         }
 
         private void BTN_Submit_Message_Click(object sender, RoutedEventArgs e)
@@ -63,7 +64,7 @@ namespace MessageFilter
             {
 
                 SMS temp = new SMS(messageHeader, messageBody);
-                temp.Process(TextWordsDictionary);
+                temp.ProcessSMS(TextWordsDictionary);
                 temp.printSMS();
             }
             else if (Regex.IsMatch(messageHeader, @"^E[0-9]{9}$", RegexOptions.IgnoreCase))
@@ -74,24 +75,57 @@ namespace MessageFilter
                 if(temp.SIRcheck()==true)//If Subject is SIR Code then make SIR
                 {
                     temp.ProcessSIR();
-                    Email.EmailsReceivedList.Add(temp);
+                    
                 }
                 else//Normal email message
                 {
-                    temp.ProcessEmail();
-                    Email.EmailsReceivedList.Add(temp);
+                    temp.ProcessEmail();//Processes the tweet creating tweet object nad adds it to List of tweets
+                    
                 }
             }
             else if (Regex.IsMatch(messageHeader, @"^T[0-9]{9}$", RegexOptions.IgnoreCase))
             {
-                Tweet temp = new Tweet();
-                temp.ProcessTweet();
-                
+                Tweet temp = new Tweet(messageHeader, messageBody);
+                temp.ProcessTweet(TextWordsDictionary);
+                Tweet.TweetsRecievedList.Add(temp);
             }
             else
             {
                 MessageBox.Show("Please ensure the Message ID has been entered in the proper format and that the message body is not empty.\n");
             }
+        }
+
+        private void RB_SMS_Checked(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void BTN_Next_Click(object sender, RoutedEventArgs e)
+        {
+            int sms = 0;
+            int email = 0;
+            int tweet = 0;
+
+            if (RB_SMS.IsChecked == true)
+            {
+                TB_MessageHeaderDisplay.Text = SMS.SMSsReceivedList[sms].getMessageHeader();
+                TB_MessageBodyDisplay.Text = SMS.SMSsReceivedList[sms].getMessageText();
+                sms++;
+            }
+            else if (RB_Email.IsChecked == true)
+            {
+                TB_MessageHeaderDisplay.Text = Email.EmailsReceivedList[email].getMessageHeader();
+                TB_MessageBodyDisplay.Text = Email.EmailsReceivedList[email].getMessageText();
+                email++;
+            }
+            else if (RB_Tweets.IsChecked == true)
+            {
+                TB_MessageHeaderDisplay.Text = Tweet.TweetsRecievedList[tweet].getMessageHeader();
+                TB_MessageBodyDisplay.Text = Tweet.TweetsRecievedList[tweet].getMessageText();
+                tweet++;
+            }
+            else
+                MessageBox.Show("Please ensure you have checked the correct box (SMS, Email, Tweet). The list of the selected type is empty.");
         } 
     }
 }
