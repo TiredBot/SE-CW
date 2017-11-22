@@ -6,19 +6,24 @@ using System.Threading.Tasks;
 
 using System.IO;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace MessageFilter
 {
-
+    
     /*
      EMAIL REGEX*/
         public class Message
         {
+            [JsonProperty]
             protected string MessageText { get; set;}
+            [JsonProperty]
             protected string MessageHeader { get; set;}
+            [JsonProperty]
             protected string MessageBody {  get; set; } //message body is raw input before processing
 
             protected static Regex URLregex = new Regex(@"(http(s)?:\/\/)?([\w-]+.)+[\w-]+(\/[\w- .\/?%&=])?", RegexOptions.IgnoreCase);//https://msdn.microsoft.com/en-us/library/ff650303.aspx?f=255&MSPPError=-2147217396#paght000001_commonregularexpressions
+            protected string jsonPath = @"C:\Users\TheOddSheep\Desktop\JsonObjects\";
 
             public Message(){}
             public Message(string messageHeader, string messageBody)
@@ -58,6 +63,7 @@ namespace MessageFilter
            {
                return SMSsReceivedList[i];
            }
+           [JsonProperty]
            private string PhoneNumber;
 
            private static Regex SMSProcess = new Regex(@"^(\+\d{11})[ ](.{1,140})", RegexOptions.IgnoreCase);
@@ -77,6 +83,8 @@ namespace MessageFilter
                this.MessageText = SMSMessageTemp.Groups[2].Value;
                this.MessageText = this.ReplaceTextWords(TextWordsDict);//returns string with expanded txt talk
                SMSsReceivedList.Add(this);
+               string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
+               File.AppendAllText(this.jsonPath + "SMS.json", SerializedObj);
            }
 
            public void printSMS()
@@ -93,9 +101,11 @@ namespace MessageFilter
            public static List<Email> EmailsReceivedList= new List<Email>();
            public static List<string> URLsQuarantined = new List<String>();
            public static List<Tuple<string, string>> SIRsReceivedList = new List<Tuple<string, string>>();
-
+           [JsonProperty]
            private string Sender { get; set; }
+           [JsonProperty]
            private string Subject { get; set; }
+           [JsonProperty]
            private bool SIR { get; set; }
            
 
@@ -141,8 +151,10 @@ namespace MessageFilter
                this.MessageText = emailTemp.Groups[15].Value;
                this.MessageText = this.quarantineURLs();
                Email.EmailsReceivedList.Add(this);
-               
+               string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
+               File.AppendAllText(this.jsonPath + "Email.json", SerializedObj);
            }
+
            public void ProcessSIR()
            {//Fix Regex to split the message into its parts as Groups
                Match SIRTemp = Email.SIRProcess.Match(this.MessageBody);
@@ -152,6 +164,8 @@ namespace MessageFilter
                Email.SIRsReceivedList.Add(Tuple.Create(SIRTemp.Groups[15].Value, SIRTemp.Groups[16].Value));//adds centre code and nature of incident list
                this.MessageText = this.quarantineURLs();
                Email.EmailsReceivedList.Add(this);
+               string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
+               File.AppendAllText(this.jsonPath + "Email.json", SerializedObj);
                
            }
 
@@ -215,7 +229,7 @@ namespace MessageFilter
               }
           }
 
-          public void ProcessTweet(Dictionary<string,string> TextWords)
+          public void ProcessTweet(Dictionary<string,string> TextWords)//BUG IN HERE MEMEORY ISSUE, try add a tweet to reproduce
            {
                Match tempTweet = Tweet.TweetProcess.Match(this.MessageBody);
                this.Sender = tempTweet.Groups[1].Value;
@@ -224,6 +238,8 @@ namespace MessageFilter
                this.getMentions();
                this.ReplaceTextWords(TextWords);
                Tweet.TweetsRecievedList.Add(this);
+               string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
+               File.AppendAllText(this.jsonPath + "Tweet.json", SerializedObj);
            }
 
           public static List<string> TrendingListDisplay() //Returns a string to show to the user in UI Listbox
@@ -236,7 +252,7 @@ namespace MessageFilter
               }
               return TrendingStrings;
           }
-          
+ 
       }
 }
 

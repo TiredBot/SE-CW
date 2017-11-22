@@ -24,3 +24,5 @@ C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\Me
 C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\obj\Debug\MessageFilter.csproj.GenerateResource.Cache
 C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\MessageFilter.exe
 C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\MessageFilter.pdb
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\Newtonsoft.Json.dll
+C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\SE-CW\SE-CW\MessageFilter\bin\Debug\Newtonsoft.Json.xml
