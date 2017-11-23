@@ -10,20 +10,18 @@ using Newtonsoft.Json;
 
 namespace MessageFilter
 {
-    
-    /*
-     EMAIL REGEX*/
+    /*EMAIL REGEX*/
         public class Message
         {
             [JsonProperty]
-            protected string MessageText { get; set;}
+            protected string MessageText { get; set; }
             [JsonProperty]
-            protected string MessageHeader { get; set;}
+            protected string MessageHeader { get; set; }
             [JsonProperty]
-            protected string MessageBody {  get; set; } //message body is raw input before processing
+            protected string MessageBody { get; set; } //message body is raw input before processing
 
-            protected static Regex URLregex = new Regex(@"(http(s)?:\/\/)?([\w-]+.)+[\w-]+(\/[\w- .\/?%&=])?", RegexOptions.IgnoreCase);//https://msdn.microsoft.com/en-us/library/ff650303.aspx?f=255&MSPPError=-2147217396#paght000001_commonregularexpressions
-            protected string jsonPath = @"C:\Users\TheOddSheep\Desktop\JsonObjects\";
+            protected static Regex URLregex = new Regex(@"(www\.)(.*)(.com)", RegexOptions.IgnoreCase);//https://msdn.microsoft.com/en-us/library/ff650303.aspx?f=255&MSPPError=-2147217396#paght000001_commonregularexpressions
+            public static string jsonPath = @"C:\Users\TheOddSheep\Desktop\JsonObjects\";
 
             public Message(){}
             public Message(string messageHeader, string messageBody)
@@ -59,10 +57,6 @@ namespace MessageFilter
        public class SMS: Message
        {
            public static List<SMS> SMSsReceivedList = new List<SMS>();
-           public static SMS getSMS(int i)
-           {
-               return SMSsReceivedList[i];
-           }
            [JsonProperty]
            private string PhoneNumber;
 
@@ -84,7 +78,7 @@ namespace MessageFilter
                this.MessageText = this.ReplaceTextWords(TextWordsDict);//returns string with expanded txt talk
                SMSsReceivedList.Add(this);
                string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
-               File.AppendAllText(this.jsonPath + "SMS.json", SerializedObj);
+               File.AppendAllText(Message.jsonPath + "SMS.json", SerializedObj);
            }
 
            public void printSMS()
@@ -133,14 +127,14 @@ namespace MessageFilter
 
            private string quarantineURLs()//replaces URLs found, returns list of URLs found to be written
            {
-               Match match = URLregex.Match(this.MessageText);
-               while(match.Success)
+               foreach(Match match in URLregex.Matches(this.MessageText))
                {
-                   string tempUrl = this.MessageHeader + ": "+ match.Value.ToString();
+                   string tempUrl = match.Value.ToString();
                    URLsQuarantined.Add(tempUrl);
                }
-               string s = URLregex.Replace(this.MessageText, "<URL QUARINTINED> ");
-               return s;
+               this.MessageText = URLregex.Replace(this.MessageText, "<URL QUARINTINED> ");
+
+               return this.MessageText;
            }
 
            public void ProcessEmail()
@@ -152,7 +146,7 @@ namespace MessageFilter
                this.MessageText = this.quarantineURLs();
                Email.EmailsReceivedList.Add(this);
                string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
-               File.AppendAllText(this.jsonPath + "Email.json", SerializedObj);
+               File.AppendAllText(Message.jsonPath + "Email.json", SerializedObj);
            }
 
            public void ProcessSIR()
@@ -165,7 +159,7 @@ namespace MessageFilter
                this.MessageText = this.quarantineURLs();
                Email.EmailsReceivedList.Add(this);
                string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
-               File.AppendAllText(this.jsonPath + "Email.json", SerializedObj);
+               File.AppendAllText(Message.jsonPath + "Email.json", SerializedObj);
                
            }
 
@@ -239,7 +233,7 @@ namespace MessageFilter
                this.ReplaceTextWords(TextWords);
                Tweet.TweetsRecievedList.Add(this);
                string SerializedObj = JsonConvert.SerializeObject(this) + "\n";
-               File.AppendAllText(this.jsonPath + "Tweet.json", SerializedObj);
+               File.AppendAllText(Message.jsonPath + "Tweet.json", SerializedObj);
            }
 
           public static List<string> TrendingListDisplay() //Returns a string to show to the user in UI Listbox

@@ -3,16 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="394.781" Width="911.616">
     <Grid>
-        <Button x:Name="TestButton" Content="Update" HorizontalAlignment="Left" Margin="383,324,0,0" VerticalAlignment="Top" Width="75" Click="TestButton_Click"/>
+        <Button x:Name="TestButton" Content="Update " HorizontalAlignment="Left" Margin="369,257,0,0" VerticalAlignment="Top" Width="109" Click="TestButton_Click"/>
         <TextBox x:Name="TB_PathToTextWords" HorizontalAlignment="Left" Height="56" Margin="6,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Text="C:\Users\TheOddSheep\Desktop\3rd Year\Software Engineering\CWRepo\textwords.csv"/>
         <Button x:Name="BTN_SetPath" Content="SetPath" HorizontalAlignment="Left" Margin="211,251,0,0" VerticalAlignment="Top" Width="75" Click="BTN_SetPath_Click" Height="42"/>
         <Label Content="Please enter the path to the &#xD;&#xA;textwords.csv file in the textbox below&#xD;&#xA; then click SetPath" HorizontalAlignment="Left" Margin="0,238,0,0" VerticalAlignment="Top" Height="60" Width="216"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="6,184,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="TB_MessageHeader" HorizontalAlignment="Left" Height="23" Margin="12,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" ToolTip="Message Header" MaxLength="10"/>
-        <Label Content="Message ID :" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
-        <Label Content="Message Body :" HorizontalAlignment="Left" Margin="6,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.935,0.462"/>
-        <TextBox x:Name="TB_MessageBody" HorizontalAlignment="Left" Height="96" Margin="10,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" ToolTip="Message Body" AcceptsReturn="True"/>
-        <Button x:Name="BTN_Submit_Message" Content="Submit" HorizontalAlignment="Left" Margin="203,208,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Message_Click"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="6,193,0,0" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="TB_MessageHeader" HorizontalAlignment="Left" Height="23" Margin="92,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" ToolTip="Message Header" MaxLength="10"/>
+        <Label Content="Message ID :" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.481,-0.885"/>
+        <Label Content="Message Body :" HorizontalAlignment="Left" Margin="6,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.935,0.462"/>
+        <TextBox x:Name="TB_MessageBody" HorizontalAlignment="Left" Height="96" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" ToolTip="Message Body" AcceptsReturn="True"/>
+        <Button x:Name="BTN_Submit_Message" Content="Submit" HorizontalAlignment="Left" Margin="203,152,0,0" VerticalAlignment="Top" Width="75" Click="BTN_Submit_Message_Click"/>
         <Separator HorizontalAlignment="Left" Height="100" Margin="117,132,0,0" VerticalAlignment="Top" Width="352" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -23,12 +23,12 @@
                 </TransformGroup>
             </Separator.RenderTransform>
         </Separator>
-        <ListBox x:Name="LB_Trending" HorizontalAlignment="Left" Height="95" Margin="304,66,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Trending" HorizontalAlignment="Left" Margin="304,40,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LB_Mentions" HorizontalAlignment="Left" Height="95" Margin="433,66,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Mentions" HorizontalAlignment="Left" Margin="434,40,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LB_SIR" HorizontalAlignment="Left" Height="112" Margin="304,197,0,0" VerticalAlignment="Top" Width="243"/>
-        <Label Content="SIR List" HorizontalAlignment="Left" Margin="304,166,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LB_Trending" HorizontalAlignment="Left" Height="95" Margin="304,27,0,0" VerticalAlignment="Top" Width="109"/>
+        <Label Content="Trending" HorizontalAlignment="Left" Margin="304,5,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LB_Mentions" HorizontalAlignment="Left" Height="95" Margin="433,27,0,0" VerticalAlignment="Top" Width="114"/>
+        <Label Content="Mentions" HorizontalAlignment="Left" Margin="434,5,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="LB_SIR" HorizontalAlignment="Left" Height="112" Margin="304,140,0,0" VerticalAlignment="Top" Width="243"/>
+        <Label Content="SIR List" HorizontalAlignment="Left" Margin="304,119,0,0" VerticalAlignment="Top"/>
         <Separator HorizontalAlignment="Left" Height="100" Margin="382,131,0,0" VerticalAlignment="Top" Width="352" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -48,6 +48,8 @@
         <Label x:Name="Body" Content="MessageText" HorizontalAlignment="Left" Margin="688,136,0,0" VerticalAlignment="Top" Height="28"/>
         <Label Content="Header" HorizontalAlignment="Left" Margin="688,75,0,0" VerticalAlignment="Top" Height="28"/>
         <TextBox HorizontalAlignment="Left" Height="55" Margin="572,6,0,0" TextWrapping="Wrap" Text="Check a box and click next to see messages of the selected type" VerticalAlignment="Top" Width="322" IsEnabled="False" FontWeight="Bold"/>
+        <TextBox x:Name="TB_PathToJsonFolder" HorizontalAlignment="Left" Height="66" Margin="304,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Button x:Name="BTN_setJsonPath" Content="Set Json&#xD;&#xA;Folder Path" HorizontalAlignment="Left" Margin="471,302,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="39"/>
 
     </Grid>
 </Window>

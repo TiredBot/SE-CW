@@ -167,6 +167,22 @@ namespace MessageFilter {
         #line default
         #line hidden
         
+        
+        #line 51 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox TB_PathToJsonFolder;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 52 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button BTN_setJsonPath;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -274,6 +290,18 @@ namespace MessageFilter {
             return;
             case 16:
             this.Body = ((System.Windows.Controls.Label)(target));
+            return;
+            case 17:
+            this.TB_PathToJsonFolder = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 18:
+            this.BTN_setJsonPath = ((System.Windows.Controls.Button)(target));
+            
+            #line 52 "..\..\MainWindow.xaml"
+            this.BTN_setJsonPath.Click += new System.Windows.RoutedEventHandler(this.Button_Click);
+            
+            #line default
+            #line hidden
             return;
             }
             this._contentLoaded = true;

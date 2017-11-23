@@ -31,6 +31,7 @@ namespace MessageFilter
         public MainWindow()
         {
             InitializeComponent();
+            this.Title = "Euston Leisure Message Filtering Service";
         }
         
         private void TestButton_Click(object sender, RoutedEventArgs e)//Button for updating twitter and SIR ListBoxes
@@ -126,6 +127,11 @@ namespace MessageFilter
             }
             else
                 MessageBox.Show("Please ensure you have checked the correct box (SMS, Email, Tweet). The list of the selected type is empty.");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Message.jsonPath = TB_PathToJsonFolder.Text;
         } 
     }
 }
